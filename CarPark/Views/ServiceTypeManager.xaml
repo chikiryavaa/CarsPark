@@ -1,0 +1,63 @@
+﻿<Window x:Class="CarPark.Views.ServiceTypeManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:packIcon="http://materialdesigninxaml.net/winfx/xaml/controls"
+        Title="Справочник услуг"
+        Width="450" Height="400"
+        Background="{DynamicResource MaterialDesignPaper}"
+        WindowStartupLocation="CenterOwner">
+    <DockPanel Margin="16">
+        
+        <ToolBar DockPanel.Dock="Top"
+             Background="Transparent"
+             Padding="0"
+             Style="{StaticResource MaterialDesignToolBar}">
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
+              Command="{Binding AddCmd}"
+              Margin="0,0,8,0">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="PlusCircle" Width="20" Height="20"/>
+                    <TextBlock Text="Добавить" Margin="6,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
+              Command="{Binding EditCmd}"
+              Margin="0,0,8,0">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Pencil" Width="20" Height="20"/>
+                    <TextBlock Text="Изменить" Margin="6,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
+              Command="{Binding DeleteCmd}">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Delete" Width="20" Height="20"/>
+                    <TextBlock Text="Удалить" Margin="6,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </ToolBar>
+
+        <DataGrid ItemsSource="{Binding Items}"
+              SelectedItem="{Binding Selected}"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              Margin="0,12,0,0"
+              Style="{StaticResource MaterialDesignDataGrid}"
+              RowHeight="36"
+              IsReadOnly="True"
+              FontSize="14">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                            Binding="{Binding Id}"
+                            Width="Auto"/>
+                <DataGridTextColumn Header="Двигатель"
+                            Binding="{Binding EngineKey}"
+                            Width="*"/>
+                <DataGridTextColumn Header="Услуга"
+                            Binding="{Binding Name}"
+                            Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
